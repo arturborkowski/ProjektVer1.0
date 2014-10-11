@@ -1,13 +1,13 @@
 package domain;
 
-public class Buyer {
+public class Buyer extends Entity {
 
-	String firstName;
-	String lastName;
-	String pesel;
-	String phoneNumber;
-	Address address;
-	Transaction transaction;
+	private String firstName;
+	private String lastName;
+	private String pesel;
+	private String phoneNumber;
+	private Address address;
+	private Transaction transaction;
 	
 	
 	public Buyer() {

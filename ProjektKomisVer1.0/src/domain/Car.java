@@ -1,15 +1,14 @@
 package domain;
 
-public class Car {
+public class Car extends Entity {
 
-	int id;
-	String mark;
-	String model;
-	String productionYear;
-	String engine;
-	String mileage;
-	String bodyNumber;
-	Offer offer;
+	private String mark;
+	private String model;
+	private String productionYear;
+	private String engine;
+	private String mileage;
+	private String bodyNumber;
+	private Offer offer;
 	
 	public Car() {
 		// TODO Auto-generated constructor stub

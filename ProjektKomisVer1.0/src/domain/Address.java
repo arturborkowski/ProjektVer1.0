@@ -2,12 +2,12 @@ package domain;
 
 public class Address {
 
-	String country;
-	String city;
-	String postalCode;
-	String street;
-	String houseNumber;
-	String localNumber;
+	private String country;
+	private String city;
+	private String postalCode;
+	private String street;
+	private String houseNumber;
+	private String localNumber;
 	
 	public Address() {
 		// TODO Auto-generated constructor stub

@@ -1,10 +1,9 @@
 package domain;
 
-public class Offer {
+public class Offer extends Entity{
 
-	int id;
-	Car car;
-	int price;
+	private Car car;
+	private int price;
 	
 	
 	public Offer() {

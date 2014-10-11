@@ -1,11 +1,10 @@
 package domain;
 
-public class Transaction {
+public class Transaction extends Entity{
 
-	int id;
-	Offer offer;
-	Buyer buyer;
-	Seller seller;
+	private Offer offer;
+	private Buyer buyer;
+	private Seller seller;
 	
 	
 	public Transaction() {
