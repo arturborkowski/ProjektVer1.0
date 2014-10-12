@@ -1,55 +1,39 @@
 package domain;
 
+import java.util.List;
+
 public class Transaction extends Entity{
 
-	private Offer offer;
-	private Buyer buyer;
-	private Seller seller;
+	private List<Offer> offers;
+	private List<Buyer> buyers;
+	private List<Seller> sellers;
+	
+	public Transaction(){
+		
+	}
 	
 	
-	public Transaction() {
-		// TODO Auto-generated constructor stub
+	
+	public List<Offer> getOffers() {
+		return offers;
 	}
-
-
-	public int getId() {
-		return id;
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
 	}
-
-
-	public void setId(int id) {
-		this.id = id;
+	public List<Buyer> getBuyers() {
+		return buyers;
 	}
-
-
-	public Offer getOffer() {
-		return offer;
+	public void setBuyers(List<Buyer> buyers) {
+		this.buyers = buyers;
 	}
-
-
-	public void setOffer(Offer offer) {
-		this.offer = offer;
+	public List<Seller> getSellers() {
+		return sellers;
 	}
-
-
-	public Buyer getBuyer() {
-		return buyer;
+	public void setSellers(List<Seller> sellers) {
+		this.sellers = sellers;
 	}
-
-
-	public void setBuyer(Buyer buyer) {
-		this.buyer = buyer;
-	}
-
-
-	public Seller getSeller() {
-		return seller;
-	}
-
-
-	public void setSeller(Seller seller) {
-		this.seller = seller;
-	}
+	
+	
 	
 	
 	

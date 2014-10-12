@@ -11,16 +11,6 @@ public class Offer extends Entity{
 	}
 
 
-	
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 
 	public Car getCar() {
 		return car;

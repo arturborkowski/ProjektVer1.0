@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class Buyer extends Entity {
 
 	private String firstName;
@@ -7,7 +9,8 @@ public class Buyer extends Entity {
 	private String pesel;
 	private String phoneNumber;
 	private Address address;
-	private Transaction transaction;
+	
+	private List<Transaction> transaction;
 	
 	
 	public Buyer() {
