@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class Seller extends Entity{
 
 	private String firstName;
@@ -7,11 +9,16 @@ public class Seller extends Entity{
 	private String pesel;
 	private String phoneNumber;
 	private Address address;
-	private Transaction transaction;
+	private List<Transaction> transactions;
 	
 	
 	public Seller() {
-		// TODO Auto-generated constructor stub
+		setId(1);
+		firstName = "Zbigniew";
+		lastName = "Malinowski";
+		pesel = "54091865333";
+		phoneNumber = "609-932-543";
+		address = new Address();
 	}
 
 	
@@ -66,15 +73,18 @@ public class Seller extends Entity{
 	}
 
 
-	public Transaction getTransaction() {
-		return transaction;
+
+	public List<Transaction> getTransactions() {
+		return transactions;
 	}
 
 
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 
-	
+
+
 	
 }

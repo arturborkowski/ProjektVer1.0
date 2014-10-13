@@ -11,7 +11,14 @@ public class Car extends Entity {
 	private Offer offer;
 	
 	public Car() {
-		// TODO Auto-generated constructor stub
+		setId(1);
+		mark = "Volvo";
+		model = "S80";
+		productionYear = "2007";
+		engine = "2.5 TSi";
+		mileage = "85000";
+		bodyNumber = "PHJK2332HH14903L-32";
+		offer = null;
 	}
 
 	

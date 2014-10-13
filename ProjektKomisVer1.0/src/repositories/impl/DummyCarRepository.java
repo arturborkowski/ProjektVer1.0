@@ -1,39 +1,71 @@
 package repositories.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.Car;
-import repositories.IRepository;
+import domain.Offer;
+import repositories.ICarRepository;
 
-public class DummyCarRepository implements IRepository<Car> {
+public class DummyCarRepository implements ICarRepository {
 
+	
+	private DummyDb db;
+	
+	public DummyCarRepository(DummyDb db) {
+		super();
+		this.db = db;
+	}
+
+	
 	@Override
 	public void add(Car entity) {
-		// TODO Auto-generated method stub
-		
+		db.cars.add(entity);
 	}
 
 	@Override
 	public void update(Car entity) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void delete(Car entity) {
-		// TODO Auto-generated method stub
-		
+		db.cars.remove(entity);		
 	}
 
 	@Override
 	public Car get(int id) {
-		// TODO Auto-generated method stub
+		for(Car c: db.cars){
+			if(c.getId()==id)
+				return c;
+		}
 		return null;
 	}
 
 	@Override
 	public List<Car> getAll() {
-		// TODO Auto-generated method stub
+		return db.cars;
+	}
+
+
+	@Override
+	public Car byOffer(Offer offer) {
+		for(Offer of: db.offers) {
+			if(of == offer){
+				return of.getCar();
+			}
+		}
+		return null;
+	}
+
+
+	@Override
+	public Car byOffer(int offerId) {
+		for(Offer of: db.offers) {
+			if(of.getId() == offerId){
+				return of.getCar();
+			}
+		}
 		return null;
 	}
 

@@ -14,7 +14,11 @@ public class Buyer extends Entity {
 	
 	
 	public Buyer() {
-		// TODO Auto-generated constructor stub
+		firstName = "Jan";
+		lastName = "Kowalski";
+		pesel = "45021309342";
+		phoneNumber = "511-232-123";
+		address = new Address();
 	}
 
 
@@ -68,14 +72,15 @@ public class Buyer extends Entity {
 	}
 
 
-	public Transaction getTransaction() {
+	public List<Transaction> getTransaction() {
 		return transaction;
 	}
 
 
-	public void setTransaction(Transaction transaction) {
+	public void setTransaction(List<Transaction> transaction) {
 		this.transaction = transaction;
 	}
 
-	
+
+
 }

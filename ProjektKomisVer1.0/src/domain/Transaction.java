@@ -1,15 +1,17 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction extends Entity{
 
 	private List<Offer> offers;
-	private List<Buyer> buyers;
-	private List<Seller> sellers;
+	private Buyer buyer;
+	private Seller seller;
 	
 	public Transaction(){
-		
+		setId(1);
+		offers = new ArrayList<Offer>();
 	}
 	
 	
@@ -20,22 +22,26 @@ public class Transaction extends Entity{
 	public void setOffers(List<Offer> offers) {
 		this.offers = offers;
 	}
-	public List<Buyer> getBuyers() {
-		return buyers;
+
+	public Buyer getBuyer() {
+		return buyer;
 	}
-	public void setBuyers(List<Buyer> buyers) {
-		this.buyers = buyers;
+
+	public void setBuyer(Buyer buyer) {
+		this.buyer = buyer;
 	}
-	public List<Seller> getSellers() {
-		return sellers;
+
+
+
+	public Seller getSeller() {
+		return seller;
 	}
-	public void setSellers(List<Seller> sellers) {
-		this.sellers = sellers;
+
+
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
-	
-	
-	
-	
-	
+		
 
 }

@@ -10,7 +10,12 @@ public class Address {
 	private String localNumber;
 	
 	public Address() {
-		// TODO Auto-generated constructor stub
+		country = "Poland";
+		city = "Gdañsk";
+		postalCode = "80-743";
+		street = "D³uga";
+		houseNumber = "15b";
+		localNumber = "20";
 	}
 
 	

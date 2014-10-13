@@ -1,13 +1,18 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Offer extends Entity{
 
 	private Car car;
 	private int price;
+	private List<Transaction> transactions;
 	
 	
 	public Offer() {
-		// TODO Auto-generated constructor stub
+		setId(1);
+		transactions = new ArrayList<Transaction>();
 	}
 
 
