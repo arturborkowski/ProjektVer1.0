@@ -2,5 +2,9 @@ package repositories;
 
 public interface IRepositoriesCatalog {
 
-	public ICarRepository getCars();
+	public ICarRepository getCar();
+	public IOfferRepository getOffers();
+	public ITransactionRepository getTransaction();
+	public ISellerRepository getSeller();
+	public IBuyerRepository getBuyer();
 }

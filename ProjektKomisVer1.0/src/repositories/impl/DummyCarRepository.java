@@ -1,6 +1,5 @@
 package repositories.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.Car;
@@ -50,10 +49,9 @@ public class DummyCarRepository implements ICarRepository {
 
 	@Override
 	public Car byOffer(Offer offer) {
-		for(Offer of: db.offers) {
-			if(of == offer){
-				return of.getCar();
-			}
+		for(Car c: db.cars){
+			if(c.getOffer()==offer)
+				return c;
 		}
 		return null;
 	}
@@ -61,11 +59,10 @@ public class DummyCarRepository implements ICarRepository {
 
 	@Override
 	public Car byOffer(int offerId) {
-		for(Offer of: db.offers) {
-			if(of.getId() == offerId){
-				return of.getCar();
+		for(Car c: db.cars) {
+			if(c.getOffer().getId()==offerId)
+				return c;
 			}
-		}
 		return null;
 	}
 

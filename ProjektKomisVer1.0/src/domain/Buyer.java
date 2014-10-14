@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Buyer extends Entity {
@@ -10,15 +11,17 @@ public class Buyer extends Entity {
 	private String phoneNumber;
 	private Address address;
 	
-	private List<Transaction> transaction;
+	private List<Transaction> transactions;
 	
 	
 	public Buyer() {
+		setId(1);
 		firstName = "Jan";
 		lastName = "Kowalski";
 		pesel = "45021309342";
 		phoneNumber = "511-232-123";
 		address = new Address();
+		transactions = new ArrayList<Transaction>();
 	}
 
 
@@ -72,13 +75,17 @@ public class Buyer extends Entity {
 	}
 
 
-	public List<Transaction> getTransaction() {
-		return transaction;
+	public List<Transaction> getTransactions() {
+		return transactions;
 	}
 
 
-	public void setTransaction(List<Transaction> transaction) {
-		this.transaction = transaction;
+	public void setTransaction(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
+	public void addTransaction(Transaction transaction) {
+		this.transactions.add(transaction);
 	}
 
 
