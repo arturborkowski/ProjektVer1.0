@@ -48,22 +48,15 @@ public class DummyCarRepository implements ICarRepository {
 
 
 	@Override
-	public Car byOffer(Offer offer) {
+	public Car byOfferId(int offerId) {
 		for(Car c: db.cars){
-			if(c.getOffer()==offer)
+			if(c.getOfferId()==offerId)
 				return c;
 		}
 		return null;
 	}
 
 
-	@Override
-	public Car byOffer(int offerId) {
-		for(Car c: db.cars) {
-			if(c.getOffer().getId()==offerId)
-				return c;
-			}
-		return null;
-	}
+
 
 }

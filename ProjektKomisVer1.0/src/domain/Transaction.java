@@ -5,43 +5,62 @@ import java.util.List;
 
 public class Transaction extends Entity{
 
-	private List<Offer> offers;
-	private Buyer buyer;
-	private Seller seller;
+	private int offerId;
+	private int buyerId;
+	private int sellerId;
+	private double totalPrice;
+	private String dateOf;
 	
+	
+
+
 	public Transaction(){
-		setId(1);
-		offers = new ArrayList<Offer>();
+		
 	}
 	
 	
 	
-	public List<Offer> getOffers() {
-		return offers;
+	public int getOfferId() {
+		return offerId;
 	}
-	public void setOffers(List<Offer> offers) {
-		this.offers = offers;
-	}
-
-	public Buyer getBuyer() {
-		return buyer;
+	public void setOfferId(int offerId) {
+		this.offerId = offerId;
 	}
 
-	public void setBuyer(Buyer buyer) {
-		this.buyer = buyer;
+	public int getBuyerId() {
+		return buyerId;
 	}
 
-
-
-	public Seller getSeller() {
-		return seller;
+	public void setBuyerId(int buyerId) {
+		this.buyerId = buyerId;
 	}
 
 
+	public int getSellerId() {
+		return sellerId;
+	}
 
-	public void setSeller(Seller seller) {
-		this.seller = seller;
+
+	public void setSellerId(int sellerId) {
+		this.sellerId = sellerId;
+	}
+	
+	public double getTotalPrice() {
+		return this.totalPrice;
+	}
+	
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 		
+	public String getDateOf() {
+		return dateOf;
+	}
+
+	public void setDateOf(String dateOf) {
+		this.dateOf = dateOf;
+	}
+
+
 
 }

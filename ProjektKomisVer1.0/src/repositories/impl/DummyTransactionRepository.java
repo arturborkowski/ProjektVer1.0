@@ -47,10 +47,11 @@ public class DummyTransactionRepository implements ITransactionRepository {
 		return db.transactions;
 	}
 
+
 	@Override
-	public Transaction ofSeller(Seller seller) {
+	public Transaction ofOffer(int offerId) {
 		for(Transaction tr: db.transactions){
-			if(tr.getSeller()==seller)
+			if(tr.getOfferId() == offerId)
 				return tr;
 		}
 		return null;
@@ -59,16 +60,7 @@ public class DummyTransactionRepository implements ITransactionRepository {
 	@Override
 	public Transaction ofSeller(int sellerId) {
 		for(Transaction tr: db.transactions){
-			if(tr.getSeller().getId()==sellerId)
-				return tr;
-			}
-		return null;
-	}
-
-	@Override
-	public Transaction ofBuyer(Buyer buyer) {
-		for(Transaction tr: db.transactions){
-			if(tr.getBuyer()==buyer)
+			if(tr.getSellerId() == sellerId)
 				return tr;
 		}
 		return null;
@@ -77,28 +69,8 @@ public class DummyTransactionRepository implements ITransactionRepository {
 	@Override
 	public Transaction ofBuyer(int buyerId) {
 		for(Transaction tr: db.transactions) {
-			if(tr.getBuyer().getId()==buyerId)
+			if(tr.getBuyerId() == buyerId)
 				return tr;
-		}
-		return null;
-	}
-
-	@Override
-	public Transaction ofOffer(Offer offer) {
-		for(Transaction tr: db.transactions){
-			if(tr.getOffers().contains(offer))
-				return tr;
-		}
-		return null;
-	}
-
-	@Override
-	public Transaction ofOffer(int offerId) {
-		for(Transaction tr: db.transactions){
-			for(Offer of: tr.getOffers()){
-				if(of.getId()==offerId)
-					return tr;
-			}
 		}
 		return null;
 	}

@@ -5,34 +5,33 @@ import java.util.List;
 
 public class Offer extends Entity{
 
-	private Car car;
-	private int price;
+	private int carId;
+	private double price;
 	private List<Transaction> transactions;
 	
 	
 	public Offer() {
-		setId(1);
 		transactions = new ArrayList<Transaction>();
 	}
 
 
 
-	public Car getCar() {
-		return car;
+	public int getCarId() {
+		return carId;
 	}
 
 
-	public void setCar(Car car) {
-		this.car = car;
+	public void setCarId(int carId) {
+		this.carId = carId;
 	}
 
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

@@ -14,12 +14,7 @@ public class Seller extends Entity{
 	
 	
 	public Seller() {
-		setId(1);
-		firstName = "Zbigniew";
-		lastName = "Malinowski";
-		pesel = "54091865333";
-		phoneNumber = "609-932-543";
-		address = new Address();
+		
 		transactions = new ArrayList<Transaction>();
 	}
 
@@ -84,10 +79,6 @@ public class Seller extends Entity{
 
 	public void setTransactions(List<Transaction> transactions) {
 		this.transactions = transactions;
-	}
-
-	public void addTransaction(Transaction transaction) {
-		this.transactions.add(transaction);
 	}
 
 	

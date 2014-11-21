@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Buyer extends Entity {
 
+	
+
+
 	private String firstName;
 	private String lastName;
 	private String pesel;
@@ -15,12 +18,7 @@ public class Buyer extends Entity {
 	
 	
 	public Buyer() {
-		setId(1);
-		firstName = "Jan";
-		lastName = "Kowalski";
-		pesel = "45021309342";
-		phoneNumber = "511-232-123";
-		address = new Address();
+		
 		transactions = new ArrayList<Transaction>();
 	}
 
@@ -84,10 +82,13 @@ public class Buyer extends Entity {
 		this.transactions = transactions;
 	}
 	
-	public void addTransaction(Transaction transaction) {
-		this.transactions.add(transaction);
+	@Override
+	public String toString() {
+		return "Buyer [firstName=" + firstName + ", lastName=" + lastName
+				+ ", pesel=" + pesel + ", phoneNumber=" + phoneNumber
+				+ ", address=" + address + ", transactions=" + transactions
+				+ "]";
 	}
-
-
+	
 
 }

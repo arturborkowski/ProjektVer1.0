@@ -16,9 +16,9 @@ public class DummyOfferRepository implements IOfferRepository {
 	}
 
 	@Override
-	public Offer withCar(Car car) {
+	public Offer withCarId(int carId) {
 		for(Offer of: db.offers){
-			if(of.getCar()==car)
+			if(of.getCarId()==carId)
 				return of;
 		}
 		return null;
