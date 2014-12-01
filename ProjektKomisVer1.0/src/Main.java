@@ -14,10 +14,16 @@ import repositories.IRepository;
 import repositories.ISellerRepository;
 import repositories.ITransactionRepository;
 import repositories.impl.DummyRepositoriesCatalog;
+import repositories.impl.mySqlImpl.BuyerBuilder;
 import repositories.impl.mySqlImpl.BuyerRepository;
+import repositories.impl.mySqlImpl.CarBuilder;
 import repositories.impl.mySqlImpl.CarRepository;
+import repositories.impl.mySqlImpl.IEntityBuilder;
+import repositories.impl.mySqlImpl.OfferBuilder;
 import repositories.impl.mySqlImpl.OfferRepository;
+import repositories.impl.mySqlImpl.SellerBuilder;
 import repositories.impl.mySqlImpl.SellerRepository;
+import repositories.impl.mySqlImpl.TransactionBuilder;
 import repositories.impl.mySqlImpl.TransactionRepository;
 
 
@@ -26,7 +32,7 @@ public class Main {
 	public static void main(String args[]){
 		
 		String user = "root";
-		String password = "nie powiem";
+		String password = "towdeyukf";
 		
 		String url = "jdbc:mysql://localhost:3306/projekt_java";
 		
@@ -137,15 +143,18 @@ public class Main {
 						
 			
 		// repozytoria do pracy na tablicach
-			IBuyerRepository buyers = new BuyerRepository(connection);
-			ICarRepository cars = new CarRepository(connection);
-			ISellerRepository sellers = new SellerRepository(connection);
-			IOfferRepository offers = new OfferRepository(connection);
-			ITransactionRepository transactions = new TransactionRepository(connection);
+
+			IBuyerRepository buyers = new BuyerRepository(connection, new BuyerBuilder());
+			ICarRepository cars = new CarRepository(connection, new CarBuilder());
+			ISellerRepository sellers = new SellerRepository(connection, new SellerBuilder());
+			IOfferRepository offers = new OfferRepository(connection, new OfferBuilder());
+			ITransactionRepository transactions = new TransactionRepository(connection, new TransactionBuilder());
+			
+
 			
 			
 			
-			 //insert
+/*			 //insert
 			buyers.add(leszek);
 			sellers.add(marian);
 			cars.add(volvo);
@@ -209,7 +218,7 @@ public class Main {
 			for(Car c: carsFromDb) {
 				System.out.println(c.getMark()+" "+c.getModel());
 			}
-			
+			*/
 			
 			
 		// na koniec testu usuwam tabele
