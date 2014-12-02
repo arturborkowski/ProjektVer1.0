@@ -15,11 +15,6 @@ import repositories.IBuyerRepository;
 public class BuyerRepository extends Repository<Buyer> implements IBuyerRepository{
 
 	
-	private String insertSql = 
-			"INSERT INTO buyers (firstName, lastName, pesel, phoneNumber) VALUES (?,?,?,?)";
-	private String updateSql =
-			"UPDATE buyers SET firstName=?, lastName=?, pesel=?, phoneNumber=?"
-			+ " WHERE id=?";
 
 	
 	
@@ -44,7 +39,7 @@ public class BuyerRepository extends Repository<Buyer> implements IBuyerReposito
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE buyers SET firstName=?, lastName=?, pesel=?, phoneNumber=? WHERE id=?";
 	}
 	
 	

@@ -33,8 +33,8 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 			"DELETE FROM "+getTableName()+" WHERE id=?";
 	protected String selectAllSql =
 			"SELECT * FROM "+getTableName();
-	protected String insertSql = getInsertQuery();  // UWAGA!!! METODA GETiNSERTqUERY() NIE PRZEKAZUJE WYNIKU DO TEJ ZMIENNEJ! NIE WIEM CZEMU..
-	protected String updateSql = getUpdateQuery();  // PATRZ WY¯EJ!
+	protected String insertSql = getInsertQuery();  
+	protected String updateSql = getUpdateQuery();  
 	
 	
 	

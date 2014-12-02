@@ -14,11 +14,6 @@ import repositories.IOfferRepository;
 public class OfferRepository extends Repository<Offer> implements IOfferRepository {
 	
 
-	private String insertSql = 
-			"INSERT INTO offers (carId, price) VALUES (?,?)";
-	private String updateSql =
-			"UPDATE offers SET carId=?, price=? WHERE id=?";
-
 
 
 	public OfferRepository(Connection connection, IEntityBuilder<Offer> builder) {
@@ -49,14 +44,14 @@ public class OfferRepository extends Repository<Offer> implements IOfferReposito
 
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO offers (carId, price) VALUES (?,?)";
 	}
 
 
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE offers SET carId=?, price=? WHERE id=?";
 	}
 
 

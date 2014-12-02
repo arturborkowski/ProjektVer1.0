@@ -14,12 +14,6 @@ import repositories.ISellerRepository;
 public class SellerRepository extends Repository<Seller> implements ISellerRepository {
 	
 
-	private String insertSql =
-			"INSERT INTO sellers (firstName, lastName, pesel, phoneNumber) VALUES (?,?,?,?)";
-	private String updateSql =
-			"UPDATE sellers SET firstName=?, lastName=?, pesel=?, phoneNumber=?"
-			+ " WHERE id=?";
-
 	
 	
 	public SellerRepository(Connection connection, IEntityBuilder<Seller> builder) {
@@ -36,12 +30,13 @@ public class SellerRepository extends Repository<Seller> implements ISellerRepos
 	
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO sellers (firstName, lastName, pesel, phoneNumber) VALUES (?,?,?,?)";
 	}
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE sellers SET firstName=?, lastName=?, pesel=?, phoneNumber=?"
+				+ " WHERE id=?";
 	}
 	
 	@Override

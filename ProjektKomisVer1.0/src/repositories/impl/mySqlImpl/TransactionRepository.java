@@ -17,11 +17,6 @@ public class TransactionRepository extends Repository<Transaction> implements IT
 	
 
 	
-	private String insertSql = 
-			"INSERT INTO transactions (buyerId, sellerId, totalPrice, dateOf, offerId) VALUES (?,?,?,?,?)";
-	private String updateSql =
-			"UPDATE transactions SET buyerId=?, sellerId=?, totalPrice=?, dateOf=?, offerId=? WHERE id=?";
-
 
 	public TransactionRepository(Connection connection, IEntityBuilder<Transaction> builder) {
 		super(connection, builder);
@@ -33,21 +28,14 @@ public class TransactionRepository extends Repository<Transaction> implements IT
 
 	@Override
 	public Transaction ofBuyer(int buyerId) {
-		Transaction result = null;
 		
 		try {
 			selectById.setInt(1, buyerId);
 			ResultSet rs = selectById.executeQuery();
 			
 			while(rs.next()) {
-				result = new Transaction();
-				result.setId(rs.getInt("id"));
-				result.setBuyerId(rs.getInt("buyerId"));
-				result.setSellerId(rs.getInt("sellerId"));
-				result.setTotalPrice(rs.getDouble("totalPrice"));
-				result.setDateOf(rs.getString("dateOf"));
-				result.setOfferId(rs.getInt("offerId"));
-				return result;
+
+				return builder.build(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,21 +46,15 @@ public class TransactionRepository extends Repository<Transaction> implements IT
 
 	@Override
 	public Transaction ofOffer(int offerId) {
-		Transaction result = null;
 		
 		try {
 			selectById.setInt(1, offerId);
 			ResultSet rs = selectById.executeQuery();
 			
 			while(rs.next()) {
-				result = new Transaction();
-				result.setId(rs.getInt("id"));
-				result.setBuyerId(rs.getInt("buyerId"));
-				result.setSellerId(rs.getInt("sellerId"));
-				result.setTotalPrice(rs.getDouble("totalPrice"));
-				result.setDateOf(rs.getString("dateOf"));
-				result.setOfferId(rs.getInt("offerId"));
-				return result;
+
+				return builder.build(rs);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,7 +67,18 @@ public class TransactionRepository extends Repository<Transaction> implements IT
 
 	@Override
 	public Transaction ofSeller(int sellerId) {
-		// TODO Auto-generated method stub
+		
+		try {
+			selectById.setInt(1, sellerId);
+			ResultSet rs = selectById.executeQuery();
+			
+			while(rs.next()) {
+
+				return builder.build(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -121,7 +114,7 @@ public class TransactionRepository extends Repository<Transaction> implements IT
 
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO transactions (buyerId, sellerId, totalPrice, dateOf, offerId) VALUES (?,?,?,?,?)";
 	}
 
 
@@ -129,7 +122,7 @@ public class TransactionRepository extends Repository<Transaction> implements IT
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE transactions SET buyerId=?, sellerId=?, totalPrice=?, dateOf=?, offerId=? WHERE id=?";
 	}
 
 

@@ -151,10 +151,9 @@ public class Main {
 			ITransactionRepository transactions = new TransactionRepository(connection, new TransactionBuilder());
 			
 
+	
 			
-			
-			
-/*			 //insert
+			 //insert
 			buyers.add(leszek);
 			sellers.add(marian);
 			cars.add(volvo);
@@ -181,13 +180,13 @@ public class Main {
 			
 			//selectByid
 			System.out.println(buyers.get(1).getFirstName()+" "+buyers.get(1).getLastName()+" lubi jeŸdziæ "+cars.get(1).getMark()
-					+" "+cars.get(1).getModel()+", ale "+sellers.get(1).getFirstName()+" "+sellers.get(1).getLastName()+" "+"chce go kupiæ.");
+					+" "+cars.get(1).getModel()+", ale "+sellers.get(1).getFirstName()+" "+sellers.get(1).getLastName()+" "+"chce go kupiæ.\n");
 			
 			
 			
 			//tu mamy po³¹czenie samochodu z ofert¹
 			//i wyciagniecie danych za pomoca metod byOfferId() oraz withCarId()
-			System.out.println("Cena za "+cars.byOfferId(1).getMark()+" wynosi: "+offers.withCarId(1).getPrice());
+			System.out.println("Cena za "+cars.byOfferId(1).getMark()+" wynosi: "+offers.withCarId(1).getPrice()+"\n");
 			
 			
 			
@@ -197,7 +196,7 @@ public class Main {
 			System.out.println(sellers.get(transactions.ofOffer(1).getSellerId()).getFirstName()+" "
 					+ sellers.get(transactions.ofBuyer(1).getSellerId()).getLastName()+" "
 					+ transactions.get(1).getDateOf()+" "
-					+ transactions.ofSeller(1).getTotalPrice());
+					+ transactions.ofSeller(1).getTotalPrice() +"\n");
 			
 			
 			
@@ -208,6 +207,7 @@ public class Main {
 			for(Car c: carsFromDb) {
 				System.out.println(c.getMark()+" "+c.getModel());
 			}
+			System.out.println();
 			
 			
 			
@@ -218,7 +218,7 @@ public class Main {
 			for(Car c: carsFromDb) {
 				System.out.println(c.getMark()+" "+c.getModel());
 			}
-			*/
+			System.out.println();
 			
 			
 		// na koniec testu usuwam tabele

@@ -16,15 +16,6 @@ public class CarRepository extends Repository<Car> implements ICarRepository{
 
 	
 	
-// szablony zapytañ sql-owych //
-	private String insertSql=
-			"INSERT INTO cars (mark, model, productionYear, engine, mileage, bodynumber, offerId)"
-			+" VALUES (?,?,?,?,?,?,?)";
-	private String updateSql=
-			"UPDATE cars SET mark=?, model=?, productionYear=?, engine=?, mileage=?, bodynumber=?, offerId=?"
-			+" WHERE id=?";
-
-	
 	
 	public CarRepository(Connection connection, IEntityBuilder<Car> builder) {
 		super(connection, builder);
@@ -63,14 +54,16 @@ public class CarRepository extends Repository<Car> implements ICarRepository{
 
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO cars (mark, model, productionYear, engine, mileage, bodynumber, offerId)"
+				+" VALUES (?,?,?,?,?,?,?)";
 	}
 
 
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE cars SET mark=?, model=?, productionYear=?, engine=?, mileage=?, bodynumber=?, offerId=?"
+				+" WHERE id=?";
 	}
 
 
