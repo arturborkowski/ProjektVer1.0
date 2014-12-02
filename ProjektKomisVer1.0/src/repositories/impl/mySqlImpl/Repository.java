@@ -26,15 +26,16 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 	
 	
 	
-// kilka przygotowanych zapytañ, które powtarzaj¹ siê dla ka¿dej klasy potomnej
+// kilka przygotowanych zapytaÃ±, ktÃ³re powtarzajÂ¹ siÃª dla kaÂ¿dej klasy potomnej
 	protected String selectByIdSql =
 			"SELECT * FROM "+getTableName()+" WHERE id=?";
 	protected String deleteSql = 
 			"DELETE FROM "+getTableName()+" WHERE id=?";
 	protected String selectAllSql =
 			"SELECT * FROM "+getTableName();
-	protected String insertSql = getInsertQuery();  
-	protected String updateSql = getUpdateQuery();  
+	protected String insertSql = getInsertQuery();  // juÅ¼ naprawione
+	protected String updateSql = getUpdateQuery();  // juÅ¼ naprawione
+	
 	
 	
 	
@@ -141,14 +142,14 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 	}
 	
 
-	// metody ustawiaj¹ce indywidualne parametry do zapytañ dla klasy ka¿dego z typów dla operacji INSERT i UPDATE
+	// metody ustawiajÂ¹ce indywidualne parametry do zapytaÃ± dla klasy kaÂ¿dego z typÃ³w dla operacji INSERT i UPDATE
 	protected abstract void setUpInsertQuery(TEntity entity) throws SQLException;
 	protected abstract void setUpUpdateQuery(TEntity entity) throws SQLException;
 	
-	// metody przekazuj¹ce indywidualne dla klasy ka¿dego z typów treœci zapytania dla operacji INSERT i UPDATE
+	// metody przekazujÂ¹ce indywidualne dla klasy kaÂ¿dego z typÃ³w treÅ“ci zapytania dla operacji INSERT i UPDATE
 	protected abstract String getInsertQuery();
 	protected abstract String getUpdateQuery();
 	
-	// zwraca nazwê tabeli w BD
+	// zwraca nazwÃª tabeli w BD
 	protected abstract String getTableName();
 }
