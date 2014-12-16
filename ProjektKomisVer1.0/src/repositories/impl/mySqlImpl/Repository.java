@@ -10,12 +10,15 @@ import java.util.List;
 import com.mysql.jdbc.MysqlErrorNumbers;
 
 import repositories.IRepository;
+import unitofwork.IUnitOfWork;
+import unitofwork.IUnitOfWorkRepository;
 import domain.Buyer;
 import domain.Entity;
 
-public abstract class Repository<TEntity extends Entity> implements IRepository<TEntity> {
+public abstract class Repository<TEntity extends Entity> implements IRepository<TEntity>, IUnitOfWorkRepository {
 
 	
+	protected IUnitOfWork uow;
 	protected Connection connection;
 	protected PreparedStatement insert;
 	protected PreparedStatement update;
@@ -26,24 +29,24 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 	
 	
 	
-// kilka przygotowanych zapytaÃ±, ktÃ³re powtarzajÂ¹ siÃª dla kaÂ¿dej klasy potomnej
+// kilka przygotowanych zapytañ, które powtarzaj¹ siê dla ka¿dej klasy potomnej
 	protected String selectByIdSql =
 			"SELECT * FROM "+getTableName()+" WHERE id=?";
 	protected String deleteSql = 
 			"DELETE FROM "+getTableName()+" WHERE id=?";
 	protected String selectAllSql =
 			"SELECT * FROM "+getTableName();
-	protected String insertSql = getInsertQuery();  // juÅ¼ naprawione
-	protected String updateSql = getUpdateQuery();  // juÅ¼ naprawione
-	
+	protected String insertSql = getInsertQuery();  
+	protected String updateSql = getUpdateQuery();  
 	
 	
 	
 	
 // KONSTRUKTOR, gdzie ustawiamy zapytania mysql-owe jako PreparedStatement
-	protected Repository(Connection connection, IEntityBuilder<TEntity> builder){
+	protected Repository(Connection connection, IEntityBuilder<TEntity> builder, IUnitOfWork uow){
 		this.connection = connection;
 		this.builder = builder;
+		this.uow = uow;
 		
 		try {	
 			insert = connection.prepareStatement(insertSql);
@@ -64,21 +67,30 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 //add
 	@Override
 	public void add(TEntity entity) {
-		try {
-			setUpInsertQuery(entity);
-			insert.executeUpdate();	
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
+		uow.markAsNew(entity, this);		
 	}
 	
 //update
 	@Override
 	public void update(TEntity entity) {
+		
+		uow.markAsDirty(entity, this);
+	}
+
+//delete
+	@Override
+	public void delete(TEntity entity) {
+		
+		uow.markAsDeleted(entity, this);
+	}	
+	
+	
+	@Override
+	public void persistUpdate(Entity entity){
+		
 		try {
-			setUpUpdateQuery(entity);
+			setUpUpdateQuery((TEntity) entity);
 			update.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -86,10 +98,11 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 		}
 		
 	}
-
-//delete
+	
+	
 	@Override
-	public void delete(TEntity entity) {
+	public void persistDelete(Entity entity) {
+		
 		try {
 			delete.setInt(1, entity.getId());
 			delete.executeUpdate();
@@ -97,7 +110,21 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 			e.printStackTrace();
 		}
 		
-	}	
+	}
+	
+	
+	@Override
+	public void persistAdd(Entity entity) {
+		
+		try {
+			setUpInsertQuery((TEntity) entity);
+			insert.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 
 //get
@@ -141,15 +168,18 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 		return result;
 	}
 	
+	
+	
+	
 
-	// metody ustawiajÂ¹ce indywidualne parametry do zapytaÃ± dla klasy kaÂ¿dego z typÃ³w dla operacji INSERT i UPDATE
+	// metody ustawiaj¹ce indywidualne parametry do zapytañ dla klasy ka¿dego z typów dla operacji INSERT i UPDATE
 	protected abstract void setUpInsertQuery(TEntity entity) throws SQLException;
 	protected abstract void setUpUpdateQuery(TEntity entity) throws SQLException;
 	
-	// metody przekazujÂ¹ce indywidualne dla klasy kaÂ¿dego z typÃ³w treÅ“ci zapytania dla operacji INSERT i UPDATE
+	// metody przekazuj¹ce indywidualne dla klasy ka¿dego z typów treœci zapytania dla operacji INSERT i UPDATE
 	protected abstract String getInsertQuery();
 	protected abstract String getUpdateQuery();
 	
-	// zwraca nazwÃª tabeli w BD
+	// zwraca nazwê tabeli w BD
 	protected abstract String getTableName();
 }

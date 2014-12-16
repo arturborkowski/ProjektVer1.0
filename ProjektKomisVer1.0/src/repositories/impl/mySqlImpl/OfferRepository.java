@@ -10,14 +10,15 @@ import java.util.List;
 import domain.Car;
 import domain.Offer;
 import repositories.IOfferRepository;
+import unitofwork.IUnitOfWork;
 
 public class OfferRepository extends Repository<Offer> implements IOfferRepository {
 	
 
 
 
-	public OfferRepository(Connection connection, IEntityBuilder<Offer> builder) {
-		super(connection, builder);
+	public OfferRepository(Connection connection, IEntityBuilder<Offer> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
 
 

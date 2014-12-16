@@ -11,14 +11,15 @@ import domain.Car;
 import domain.Entity;
 import domain.Offer;
 import repositories.ICarRepository;
+import unitofwork.IUnitOfWork;
 
 public class CarRepository extends Repository<Car> implements ICarRepository{
 
 	
 	
 	
-	public CarRepository(Connection connection, IEntityBuilder<Car> builder) {
-		super(connection, builder);
+	public CarRepository(Connection connection, IEntityBuilder<Car> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
 
 

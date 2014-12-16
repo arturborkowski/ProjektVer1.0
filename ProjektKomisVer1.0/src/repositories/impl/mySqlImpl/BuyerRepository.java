@@ -11,6 +11,7 @@ import java.util.List;
 import domain.Buyer;
 import domain.Transaction;
 import repositories.IBuyerRepository;
+import unitofwork.IUnitOfWork;
 
 public class BuyerRepository extends Repository<Buyer> implements IBuyerRepository{
 
@@ -18,8 +19,8 @@ public class BuyerRepository extends Repository<Buyer> implements IBuyerReposito
 
 	
 	
-	public BuyerRepository(Connection connection, IEntityBuilder<Buyer> builder) {
-		super(connection, builder);
+	public BuyerRepository(Connection connection, IEntityBuilder<Buyer> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
 
 

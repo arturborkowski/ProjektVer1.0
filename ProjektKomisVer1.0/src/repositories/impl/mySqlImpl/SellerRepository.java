@@ -10,14 +10,15 @@ import java.util.List;
 import domain.Seller;
 import domain.Transaction;
 import repositories.ISellerRepository;
+import unitofwork.IUnitOfWork;
 
 public class SellerRepository extends Repository<Seller> implements ISellerRepository {
 	
 
 	
 	
-	public SellerRepository(Connection connection, IEntityBuilder<Seller> builder) {
-		super(connection, builder);	
+	public SellerRepository(Connection connection, IEntityBuilder<Seller> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);	
 	}
 
 	
@@ -27,9 +28,7 @@ public class SellerRepository extends Repository<Seller> implements ISellerRepos
 		return "sellers";
 	}
 	
-	/* Chodzi o te dwie poniższe funkcje. Nie wiem czemu, ale kiedy tresc stringa INSERT... czy UPDATE...
-	 była podawana przez zmienną nie działało. Kiedy wpisałem ręcznie do returna treść - działa bez zarzutu. 
-	 W każdym razie kompiluje się, więc problem rozwiązany.*/
+	
 	@Override
 	protected String getInsertQuery() {
 		return "INSERT INTO sellers (firstName, lastName, pesel, phoneNumber) VALUES (?,?,?,?)";
@@ -40,7 +39,7 @@ public class SellerRepository extends Repository<Seller> implements ISellerRepos
 		return "UPDATE sellers SET firstName=?, lastName=?, pesel=?, phoneNumber=?"
 				+ " WHERE id=?";
 	}
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@Override
 	protected void setUpInsertQuery(Seller entity) throws SQLException {
 		insert.setString(1, entity.getFirstName());

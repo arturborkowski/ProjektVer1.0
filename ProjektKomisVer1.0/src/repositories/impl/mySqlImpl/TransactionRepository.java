@@ -12,14 +12,15 @@ import domain.Offer;
 import domain.Seller;
 import domain.Transaction;
 import repositories.ITransactionRepository;
+import unitofwork.IUnitOfWork;
 
 public class TransactionRepository extends Repository<Transaction> implements ITransactionRepository {
 	
 
 	
 
-	public TransactionRepository(Connection connection, IEntityBuilder<Transaction> builder) {
-		super(connection, builder);
+	public TransactionRepository(Connection connection, IEntityBuilder<Transaction> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 		
 	}
 

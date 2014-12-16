@@ -2,7 +2,9 @@ package domain;
 
 public abstract class Entity {
 
-	private int id;
+	protected int id;
+	protected EntityState state;
+	
 	
 	
 	public int getId() {
@@ -14,4 +16,17 @@ public abstract class Entity {
 		this.id = id;
 	}
 
+	
+
+	public EntityState getState() {
+		return state;
+	}
+
+
+	public void setState(EntityState state) {
+		this.state = state;
+	}
+
+	
+	
 }

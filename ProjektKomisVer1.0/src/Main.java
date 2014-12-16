@@ -25,6 +25,8 @@ import repositories.impl.mySqlImpl.SellerBuilder;
 import repositories.impl.mySqlImpl.SellerRepository;
 import repositories.impl.mySqlImpl.TransactionBuilder;
 import repositories.impl.mySqlImpl.TransactionRepository;
+import unitofwork.IUnitOfWork;
+import unitofwork.UnitOfWork;
 
 
 public class Main {
@@ -85,6 +87,9 @@ public class Main {
 			// tworzymy po³¹czenie z baz¹ danych za pomoc¹ URL, nazwy u¿ytkownika i has³a
 			Connection connection = DriverManager.getConnection(url,user,password);
 			
+			
+			UnitOfWork uow = new UnitOfWork(connection);
+			
 			// tworzymy polecenia do stworzenia tablic (zapytania MYSQL)
 			String createTableBuyers = 					
 					"CREATE TABLE buyers("
@@ -142,13 +147,15 @@ public class Main {
 				stmt.executeUpdate(createTableTransactions);
 						
 			
+			
+				
 		// repozytoria do pracy na tablicach
 
-			IBuyerRepository buyers = new BuyerRepository(connection, new BuyerBuilder());
-			ICarRepository cars = new CarRepository(connection, new CarBuilder());
-			ISellerRepository sellers = new SellerRepository(connection, new SellerBuilder());
-			IOfferRepository offers = new OfferRepository(connection, new OfferBuilder());
-			ITransactionRepository transactions = new TransactionRepository(connection, new TransactionBuilder());
+			IBuyerRepository buyers = new BuyerRepository(connection, new BuyerBuilder(), uow);
+			ICarRepository cars = new CarRepository(connection, new CarBuilder(), uow);
+			ISellerRepository sellers = new SellerRepository(connection, new SellerBuilder(), uow);
+			IOfferRepository offers = new OfferRepository(connection, new OfferBuilder(), uow);
+			ITransactionRepository transactions = new TransactionRepository(connection, new TransactionBuilder(), uow);
 			
 
 	
@@ -160,8 +167,9 @@ public class Main {
 			cars.add(audi); 
 			offers.add(oferta);
 			transactions.add(transakcja);
-						
-			
+				
+				// za pomoc¹ metody commit() ³adujemy wszystkie zmiany z "lokalnego repozutorium" do bazy danych
+			uow.commit();
 			
 			//update
 			Car nowy = new Car();
@@ -170,13 +178,24 @@ public class Main {
 			nowy.setModel("Golf");
 			cars.update(nowy); 
 			
+			
+			
 			Buyer stefan = new Buyer();
 			stefan = buyers.get(1);
 			stefan.setFirstName("Stefan");
 			stefan.setLastName("Kowalski");
 			buyers.update(stefan);
 			
-			
+				//ponownie u¿ywamy commit(), aby zaktualizowane lokalnie dane umieœciæ w bazie danych
+			uow.commit();
+			/* 
+			 * 
+			 * 
+			 * 				W poni¿szych metodach nie ma potrzeby korzystania z commitu, poniewa¿ u¿ywamy jedynie
+			 * 				metod "wyci¹gaj¹cych" rekordy z bazy danych, nie wprowadzamy ju¿ tam zmian
+			 * 
+			 * 
+			 * */
 			
 			//selectByid
 			System.out.println(buyers.get(1).getFirstName()+" "+buyers.get(1).getLastName()+" lubi jeŸdziæ "+cars.get(1).getMark()
